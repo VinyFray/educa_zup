@@ -1,31 +1,22 @@
-package br.com.zup.educa_zup.models;
+package br.com.zup.educa_zup.controllers.dtos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 
-@Entity
-public class Aluno {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AlunoUpdateDTO {
+    @NotNull
     private Long id;
+    @Size(min = 5, message = "name not valid")
     private String name;
+    @Min(11)
     private int idade;
     private String email;
-    @NotNull
+    @CPF(message = "cpf not valid")
     private String cpf;
 
-    public Aluno() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public AlunoUpdateDTO(){
     }
 
     public String getName() {
@@ -52,11 +43,19 @@ public class Aluno {
         this.email = email;
     }
 
-    public @NotNull String getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(@NotNull String cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public @NotNull Long getId() {
+        return id;
+    }
+
+    public void setId(@NotNull Long id) {
+        this.id = id;
     }
 }
