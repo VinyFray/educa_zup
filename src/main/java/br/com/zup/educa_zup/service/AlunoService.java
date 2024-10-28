@@ -2,6 +2,7 @@ package br.com.zup.educa_zup.service;
 
 import br.com.zup.educa_zup.models.Aluno;
 import br.com.zup.educa_zup.repositories.AlunoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,7 @@ public class AlunoService {
         return alunoOptional.orElseThrow(() -> new RuntimeException("Aluno not found"));
     }
 
+    @Transactional
     public Aluno updateAluno(Aluno aluno){
         Aluno alunoDB = findAluno(aluno.getId());
 
